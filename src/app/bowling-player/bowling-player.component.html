@@ -1,0 +1,17 @@
+<div class="col-md-3">
+  <h2 class="page-header">Players</h2>
+
+  <div class="alert alert-warning" role="alert" *ngIf="currentGame.hasPlayers">
+    Add players to start a game.
+  </div>
+
+  <ul class="list-group" *ngIf="currentGame.hasPlayers">
+    <li class="list-group-item" *ngFor="let player of currentGame.players">
+      {{ player.name }}
+      <span class="badge" *ngIf="currentGame.isStarted">{{ player.score }}</span>
+      <button type="button" class="btn btn-danger btn-xs pull-right" (click)="leaveGame(player.name)" *ngIf="currentGame.isStarted">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      </button> 
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+    
+    <div class="row">
+      <div class="col-md-12">
+        <bowling-scorecard></bowling-scorecard> <!-- SCORE CARD-->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <bowling-player></bowling-player>
+      </div>
+      <div class="col-md-3">
+        <bowling-game></bowling-game>
+      </div>
+
+      <div class="col-md-3">
+       <bowling-roll [knocked]="knocked"></bowling-roll>
+      </div>
+
+    </div>
+    
+    <div class="row">
+      <div class="col-md-3">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Player Name" aria-label="..." [disabled]="currentGame.isStarted" [(ngModel)]="newPlayer">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-primary" [disabled]="currentGame.isStarted" (click)="joinGame()">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Join
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-block btn-primary" [disabled]="currentGame.isStarted" (click)="startGame()">
+          <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start Game
+        </button>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-block btn-secondary" [disabled]="!currentGame.isStarted" (click)="finishGame()">
+          <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Finish Game
+        </button>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-block btn-success" [disabled]="!currentGame.isStarted || currentGame.isFinished" (click)="throwBall()">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Throw a Ball
+        </button>
+      </div>
+    </div>
+  </div> <!-- /container -->
