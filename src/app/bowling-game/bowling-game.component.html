@@ -3,7 +3,7 @@
 <ul class="list-group">
     <li class="list-group-item">
     <div class="row">
-        <div class="col-md-2"><label>Status</label></div>
+        <div class="col-md-2"><label>Status </label></div>
         <div class="col-md-4">
         <span class="label label-default" *ngIf="!currentGame.isStarted">Not Started</span>
         <span class="label label-primary" *ngIf="currentGame.isStarted && !currentGame.isFinished">In Progress</span>
@@ -14,16 +14,16 @@
     <li class="list-group-item" *ngIf="currentGame.hasPlayers">
     <div class="row">
         <div class="col-md-2"><label>Player</label></div>
-        <div class="col-md-4">{{ currentPlayer.name }}</div>
+        <div class="col-md-4">{{ currentGame.currentPlayer.name }}</div>
     </div>
     </li>
     
     <li class="list-group-item" *ngIf="currentGame.hasPlayers">
     <div class="row">
         <div class="col-md-2"><label>Frame</label></div>
-        <div class="col-md-4">{{ currentGame.currentFrame.position }}</div>
+        <div class="col-md-4" *ngIf="currentGame.currentFrame !== undefined">{{ currentGame.currentFrame.position }}</div>
         <div class="col-md-2"><label>Roll</label></div>
-        <div class="col-md-4">{{ currentGame.currentRoll.position }}</div>
+        <div class="col-md-4" *ngIf="currentGame.currentRoll !== null">{{ currentGame.currentRoll.position }}</div>
     </div>
     </li>
 </ul>

@@ -1,6 +1,6 @@
-<h2 class="page-header">Scoreboard</h2>
+<h2 class="page-header text-black-50">Scoreboard</h2>
 
-<div class="jumbotron" *ngIf="!currentGame.hasPlayers">
+<div class="jumbotron text-white" *ngIf="!currentGame.hasPlayers">
   <h3>No game :(</h3>
   <span>There are no players in this game.</span>
 </div>
@@ -22,20 +22,22 @@
       <th>Score</th>
     </tr>
   </thead>
-  <tbody *ngFor="let player of currentGame._players">
+  <tbody *ngFor="let player of currentGame.players">
     <tr>
       <th rowspan="2" scope="row">
          {{ player.name }}
       </th>
-      {{player._rolls}}
-      <td *ngFor="let roll of player._rolls; let i = index">{{ roll }}</td>
-      <th rowspan="2">score {{ player._score }}</th>
+      <th *ngFor="let roll of player.rolls">{{ roll | rollScore}}</th>
+      <th rowspan="2"> {{ player.score }}</th>
     </tr>
 
 
 
     <tr class="table-active">
-      <th colspan="{{ frame.rolls.length }}" *ngFor="let frame of player._frames">{{frame._score}}</th>
+      <ng-template ngFor let-frame [ngForOf]="player.frames">
+       <th [attr.colspan]="frame.rolls.length" >{{frame.score}}</th>
+     </ng-template>
+     
     </tr>
   </tbody>
 </table>

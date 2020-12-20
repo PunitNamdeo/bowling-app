@@ -18,7 +18,6 @@ export class BowlingPlayerService {
 
     for (let i = 1; i <= this._frameCount; i++) {
       const frame = new BowlingFrameService(i);
-      console.log(i);
       this._frames.push(frame);
     }
   }

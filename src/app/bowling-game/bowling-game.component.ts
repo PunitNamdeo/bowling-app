@@ -7,11 +7,12 @@ import { BowlingGameService } from './bowling-game.service';
   styleUrls: ['./bowling-game.component.css']
 })
 export class BowlingGameComponent {
-  currentGame = new BowlingGameService();
+  currentGame :any;
   currentPlayer: any;
   constructor(public bowlingGameService: BowlingGameService) {
-    this.currentPlayer = bowlingGameService.currentPlayer;
-    console.log(this.currentPlayer);
+    //this.currentPlayer = bowlingGameService.currentPlayer;
+    this.currentGame=bowlingGameService;
+    //console.log(this.currentPlayer);
   }
 
 }

@@ -65,7 +65,7 @@ export class BowlingGameService {
     if (!this.hasPlayers) {
       throw new Error('There are no players!');
     }
-
+   
     this._isStarted = true;
   }
 
@@ -79,9 +79,9 @@ export class BowlingGameService {
     if (this.isFinished) {
       throw new Error('The game has finished!');
     }
-
-    this.currentPlayer.play(knocked);
-
+    
+      this.currentPlayer.play(knocked);
+    
     if (this._currentTurn < this._players.length - 1) {
       this._currentTurn++;
     }

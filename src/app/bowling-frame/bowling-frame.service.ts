@@ -1,10 +1,12 @@
 import { Injectable, OnInit } from '@angular/core';
 import { BowlingRollService } from '../bowling-roll/bowling-roll.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class BowlingFrameService {
+  //static instance: BowlingFrameService;
   _position: number;
   _sum: number = 0;
   _bonus: number = 0;
@@ -17,9 +19,9 @@ export class BowlingFrameService {
    const rollCount = this._position < this._frameCount ? 2 : 3;
    for (let i = 1; i <= rollCount; i++) {
          const roll = new BowlingRollService(this, i, null);
-         console.log(this);
          this._rolls.push(roll);
      }
+    //BowlingFrameService.instance = this;
  }
 
  get position(): number {
@@ -89,6 +91,7 @@ export class BowlingFrameService {
  }
 
  play(knocked): void  {
+   console.log("Start Frame Play");
    const pinCount = 10;
 
    const roll = this.currentRoll;
@@ -110,12 +113,14 @@ export class BowlingFrameService {
 
    // Last frame
    if (this.isLast && roll.position === 2) {
+    
      if (sum % 10 !== 0) {
        this.finish();
      }
    }
    // Strike
-   if (isStrike && roll.position === 1) {
+  
+    if (isStrike  && roll.position == 1) {
      this.finish();
    }
 

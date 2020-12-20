@@ -1,6 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import { BowlingGameService } from './bowling-game/bowling-game.service';
 import { BowlingService } from './services/bowling.service';
+import { config } from 'process';
 
 @Component({
   selector: 'app-root',
@@ -55,12 +56,11 @@ export class AppComponent {
     try {
         const previous = this.bowlingGameService.previousValue;
         const value = this.bowlingService.throwBall(previous);
-
         this.knocked = value;
         this.bowlingGameService.play(value);
     }
     catch (e) {
-        alert(e.message);
+        alert("I am alert"+e);
     }
   }
 

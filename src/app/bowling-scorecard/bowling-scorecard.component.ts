@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { BowlingGameService } from '../bowling-game/bowling-game.service';
+import { BowlingFrameService } from '../bowling-frame/bowling-frame.service';
 
 @Component({
   selector: 'bowling-scorecard',
@@ -8,8 +9,9 @@ import { BowlingGameService } from '../bowling-game/bowling-game.service';
 })
 export class BowlingScorecardComponent {
   currentGame: BowlingGameService;
-
+  //frame: BowlingFrameService;
   constructor(public bowlingGameService: BowlingGameService) {
     this.currentGame = bowlingGameService;
+    //this.frame = BowlingFrameService.instance;
   }
 }

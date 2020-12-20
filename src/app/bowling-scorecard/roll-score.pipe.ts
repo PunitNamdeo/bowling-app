@@ -1,12 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {BowlingFrameService} from '../bowling-frame/bowling-frame.service';
+import { BowlingPlayerService } from '../bowling-player/bowling-player.service';
 /*
  * Filter for roll score based on value, strike and spare.
  *
 */
-@Pipe({name: 'rollScore'})
+@Pipe({name: 'rollScore',pure: false})
 export class RollScorePipe implements PipeTransform {
-  private _roll: any;
+
+  
+  
  /*constructor(public bowlingFrameService: BowlingFrameService) {
     this._roll = bowlingFrameService._rolls;
   }*/
@@ -15,11 +18,9 @@ export class RollScorePipe implements PipeTransform {
     const filter = new RollScorePipe(input);
     return filter.transform();
   }*/
-  transform(pinCount: number = 10): any {
-    const roll = this._roll;
-    console.log(roll);
+  transform(roll: any ): any {
+    //const roll = this._roll;
     const value = roll.value;
-
     if (value === undefined || value == null || value <= 0) {
       return '-';
     }
