@@ -90,16 +90,26 @@ export class BowlingGameService {
   * name: play
   * description: To play the game with knocked and throw error if game has abruptly finished
   */
-  play(knocked): void  {
+  play(knocked): void {
     if (this.isFinished) {
       throw new Error('The game has finished!');
     }
     this.currentPlayer.play(knocked);
-    if (this._currentTurn < this._players.length - 1) {
-      this._currentTurn++;
+    if (this.currentRoll == null) {
+      if (this._currentTurn < this._players.length - 1) {
+        this._currentTurn++;
+      }
+      else {
+        this._currentTurn = 0;
+      }
     }
-    else {
-      this._currentTurn = 0;
+    else if ((this.currentRoll.position === 1) ) {
+      if (this._currentTurn < this._players.length - 1) {
+        this._currentTurn++;
+      }
+      else {
+        this._currentTurn = 0;
+      }
     }
   }
   /*
