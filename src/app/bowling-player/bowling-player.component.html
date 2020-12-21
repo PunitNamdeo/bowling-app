@@ -1,17 +1,39 @@
-<div class="col-md-3">
-  <h2 class="page-header">Players</h2>
+<!-- The Modal -->
+<div class="modal overlay" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Bowled!!</h4>
+        <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        Oops :( something went wrong. Please start the game.
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click) = "hide()">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<h2 class="page-header text-black-50 border-bottom">Players</h2>
 
   <div class="alert alert-warning" role="alert" *ngIf="!currentGame.hasPlayers">
     Add players to start a game.
   </div>
 
   <ul class="list-group" *ngIf="currentGame.hasPlayers">
-    <li class="list-group-item" *ngFor="let player of currentGame.players">
-      {{ player.name }}
-      <span class="badge" *ngIf="currentGame.isStarted">{{ player.score }}</span>
-      <button type="button" class="btn btn-danger btn-xs pull-right" (click)="leaveGame(player.name)" *ngIf="!currentGame.isStarted">
-        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    <li class="list-group-item p-1" *ngFor="let player of currentGame.players">
+      <span class="ml-3 bowling-player">{{ player.name }}</span>
+      <span class="badge badge-info float-right p-2 m-1" *ngIf="currentGame.isStarted">{{ player.score }}</span>
+      <button type="button" class="btn btn-xs float-right" (click)="leaveGame(player.name)" *ngIf="!currentGame.isStarted">
+        <fa-icon [icon]="faTrash"></fa-icon>
       </button> 
     </li>
   </ul>
-</div>

@@ -1,13 +1,23 @@
-<h2 class="page-header text-black-50">Scoreboard</h2>
+<h2 class="text-black-50 border-bottom">Scoreboard</h2>
 
 <div class="jumbotron text-white" *ngIf="!currentGame.hasPlayers">
-  <h3>No game :(</h3>
-  <span>There are no players in this game.</span>
+  <div class="row">
+    <div class="col-md-4">
+      <h3>No game :(</h3>
+      <span>You have not started your game.</span>
+    </div>
+    <div class="col-md-8">
+      <ul class="bowling-info-list">
+        <li>To start a game, add one or more players and click the "Start Game" button.</li>
+        <li>To play a game, click the "Throw a Ball" button for each player.</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
-<table class="table table-bordered centered" *ngIf="currentGame.hasPlayers">
-  <thead class="thead-inverse">
-    <tr>
+<table class="table table-bordered text-color" *ngIf="currentGame.hasPlayers">
+  <thead class="thead-dark">
+    <tr class="text-center">
       <th rowspan="2">Player</th>
       <th colspan="2">1</th>
       <th colspan="2">2</th>
@@ -22,22 +32,22 @@
       <th>Score</th>
     </tr>
   </thead>
-  <tbody *ngFor="let player of currentGame.players">
+  <tbody *ngFor="let player of currentGame.players" class="text-center">
     <tr>
-      <th rowspan="2" scope="row">
+      <th rowspan="2" scope="row" class="pt-4 bowling-player">
          {{ player.name }}
       </th>
-      <th *ngFor="let roll of player.rolls">{{ roll | rollScore}}</th>
-      <th rowspan="2"> {{ player.score }}</th>
+      <th *ngFor="let roll of player.rolls" class="font-weight-light">{{ roll | rollScore}}</th>
+      <th rowspan="2" class="pt-4 bowling-player"> {{ player.score }}</th>
     </tr>
 
 
 
-    <tr class="table-active">
+    <tr class="table-success">
       <ng-template ngFor let-frame [ngForOf]="player.frames">
        <th [attr.colspan]="frame.rolls.length" >{{frame.score}}</th>
      </ng-template>
-     
+
     </tr>
   </tbody>
 </table>

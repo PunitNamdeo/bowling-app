@@ -2,11 +2,108 @@
 .bowling-app {
     font-family: "Roboto Condensed", "Helvetica Neue", Arial, sans-serif;
 }
-.jumbotron, .score-card {
-    background-image: linear-gradient(-296deg, rgb(0, 94, 93), rgb(0, 133, 122));
+.jumbotron {
+    background-color: #003737;
 }
-.info-list {
+.bowling-info-list {
     list-style-type: none;
 }
 
+.bowling-bg-img {
+    background-image: url("../src/assets/bowling.jpg");
+    background-repeat: round;
+    background-size: contain;
+    height: 12rem;
+}
 
+.bowling-header-text {
+    position: relative;
+    top: 7.5rem;
+    color: #ffffff;
+}
+
+.bowling-player {
+    line-height: 2.4rem;
+    color: #343a40;
+}
+
+.text-color {
+    color: #343a40;
+}
+
+.knocked-ball {
+    background-image: url("../src/assets/bowling-ball.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-align: center;
+    line-height: 1.6em;
+    width: 1.6em;
+    font-size: 65px;
+    position: relative;
+    left: 8rem;
+}
+
+.knocked-value {
+    font-size: 30px;
+    position: relative;
+    bottom: 2rem;
+}
+
+.card-footer {
+    position: sticky;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #ffffff;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none !important;
+    border-color: #adb5bd !important;
+}
+
+.btn-primary {
+    background-color: #003737;
+    border-color: #003737;
+}
+
+.btn-secondary {
+    background-color: #ffcc00;
+    border-color: #ffcc00;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #003737 !important;
+    border-color: #003737 !important;
+    outline: none;
+    box-shadow: none !important;
+}
+
+.btn-primary:disabled {
+    background-color: #8fd19e !important;
+    border-color: #8fd19e !important;
+}
+
+.btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus, .btn-secondary:disabled {
+    background-color: #ffcc00 !important;
+    border-color: #ffcc00 !important;
+    outline: none;
+    box-shadow: none !important;;
+}
+
+.overlay {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.4s ease !important;
+}
+
+.modal-header, .modal-footer {
+    border: none;
+}

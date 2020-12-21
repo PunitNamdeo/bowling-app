@@ -1,29 +1,31 @@
-<h2 class="page-header">Game</h2>
+<h2 class="border-bottom text-black-50">Game</h2>
 
-<ul class="list-group">
+<ul class="list-group text-color">
     <li class="list-group-item">
     <div class="row">
-        <div class="col-md-2"><label>Status </label></div>
-        <div class="col-md-4">
-        <span class="label label-default" *ngIf="!currentGame.isStarted">Not Started</span>
-        <span class="label label-primary" *ngIf="currentGame.isStarted && !currentGame.isFinished">In Progress</span>
-        <span class="label label-danger" *ngIf="currentGame.isStarted && currentGame.isFinished">Finished</span>
+        <div class="col-md-2 font-weight-bold"><label>Status </label></div>
+        <div class="col-md-10 text-center">
+        <span class="badge badge-danger" *ngIf="!currentGame.isStarted">Not Started</span>
+        <span class="badge badge-success" *ngIf="currentGame.isStarted && !currentGame.isFinished">In Progress</span>
+        <span class="badge badge-info" *ngIf="currentGame.isStarted && currentGame.isFinished">Finished</span>
         </div>
     </div>
     </li>
     <li class="list-group-item" *ngIf="currentGame.hasPlayers">
     <div class="row">
-        <div class="col-md-2"><label>Player</label></div>
-        <div class="col-md-4">{{ currentGame.currentPlayer.name }}</div>
+        <div class="col-md-2 font-weight-bold"><label>Player</label></div>
+        <div class="col-md-10 text-center">{{ currentGame.currentPlayer.name }}</div>
     </div>
     </li>
     
     <li class="list-group-item" *ngIf="currentGame.hasPlayers">
     <div class="row">
-        <div class="col-md-2"><label>Frame</label></div>
-        <div class="col-md-4" *ngIf="currentGame.currentFrame !== undefined">{{ currentGame.currentFrame.position }}</div>
-        <div class="col-md-2"><label>Roll</label></div>
-        <div class="col-md-4" *ngIf="currentGame.currentRoll !== null">{{ currentGame.currentRoll.position }}</div>
+        <div class="col-md-2 font-weight-bold"><label>Frame</label></div>
+        <div class="col-md-4 text-center" *ngIf="currentGame.currentFrame !== undefined; else noValue">{{ currentGame.currentFrame.position }}</div>
+        <ng-template class="col-md-4 text-center" #noValue><div class="col-md-4 text-center">NA</div></ng-template>
+        <div class="col-md-2 font-weight-bold"><label>Roll</label></div>
+        <div class="col-md-4 text-center" *ngIf="currentGame.currentRoll !== null; else noValue">{{ currentGame.currentRoll.position }}</div>
+        <ng-template #noValue><div class="col-md-4 text-center">NA</div></ng-template>
     </div>
     </li>
 </ul>

@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import { BowlingGameService } from './bowling-game/bowling-game.service';
 import { BowlingService } from './services/bowling.service';
-import { config } from 'process';
+import { faUserPlus, faPlayCircle, faStopCircle, faSync } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,14 @@ export class AppComponent {
   currentGame: any;
   newPlayer: string;
   knocked: number;
-
+  faUserPlus = faUserPlus;
+  faPlayCircle = faPlayCircle;
+  faStopCircle = faStopCircle;
+  faSync = faSync;
+  showModal: boolean;
+  content: string;
+  title: string;
+  disableStartGameButton: boolean = true;
   constructor(
     public bowlingService: BowlingService,
     public bowlingGameService: BowlingGameService
@@ -20,7 +27,6 @@ export class AppComponent {
     this.newPlayer = '';
     this.knocked = 0;
     this.currentGame = bowlingGameService;
-    console.log(this.currentGame);
   }
 
   startGame(): void {
@@ -28,28 +34,28 @@ export class AppComponent {
       this.bowlingGameService.start();
     }
     catch (e) {
-        alert(e.message);
+      console.log(e.message);
     }
   }
 
   finishGame(): void {
     try {
       this.bowlingGameService.reset();
+      this.disableStartGameButton = true;
     }
     catch (e) {
-        alert(e.message);
+      this.showModal = true;
+      console.log(e.message);
     }
   }
 
   joinGame(): void {
     try {
-      /*if(event.which === 13) {*/
         this.bowlingGameService.join(this.newPlayer);
         this.newPlayer = '';
-       // event.preventDefault();
-     // }
+        this.disableStartGameButton = false;
     } catch (e) {
-      alert(e.message);
+      console.log(e.message);
     }
   }
   throwBall(): void {
@@ -60,8 +66,11 @@ export class AppComponent {
         this.bowlingGameService.play(value);
     }
     catch (e) {
-        alert("I am alert"+e);
+      this.showModal = true;
+      console.log(e.message);
     }
   }
-
+  hide(): void {
+    this.showModal = false;
+  }
 }

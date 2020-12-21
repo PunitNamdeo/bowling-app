@@ -1,7 +1,9 @@
-<h2 class="page-header">Ball</h2>
+<div *ngIf="currentGame.isStarted">
+<h2 class="border-bottom text-black-50">Ball</h2>
 <div class="alert alert-warning" role="alert" *ngIf="currentGame.isStarted">
   Start a game to throw a ball.
 </div>
-<div class="ball" *ngIf="currentGame.isStarted">
-  <span>{{ knocked }}</span>
+<div class="knocked-ball">
+  <span class="mr-1 knocked-value text-white">{{ knocked }}</span>
+</div>
 </div>

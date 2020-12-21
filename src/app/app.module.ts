@@ -15,6 +15,7 @@ import { BowlingFrameService } from './bowling-frame/bowling-frame.service';
 import { BowlingRollService } from './bowling-roll/bowling-roll.service';
 import { FormsModule } from '@angular/forms';
 import {RollScorePipe} from './bowling-scorecard/roll-score.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {RollScorePipe} from './bowling-scorecard/roll-score.pipe';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [BowlingService, BowlingGameService, BowlingPlayerService, BowlingFrameService, BowlingRollService],
   bootstrap: [AppComponent]

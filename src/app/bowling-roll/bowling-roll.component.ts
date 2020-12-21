@@ -7,9 +7,6 @@ import { BowlingGameService } from '../bowling-game/bowling-game.service';
   styleUrls: ['./bowling-roll.component.css']
 })
 export class BowlingRollComponent  {
-  /*public frame: any;
-  public position: number;
-  public value: number;*/
   currentGame: BowlingGameService;
   @Input() knocked: any;
   constructor(public bowlingGameService: BowlingGameService) {

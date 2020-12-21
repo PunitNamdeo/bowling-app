@@ -1,17 +1,40 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron text-white p-4">
+<div class="jumbotron text-white p-4 bowling-bg-img">
   <div class="container">
-    <h1 class="display-4 ml-4">Bowling Angular Application</h1>
-    <ul class="info-list">
-      <li>To start a game, add one or more players and click the "Start Game" button.</li>
-      <li>To play a game, click the "Throw a Ball" button for each player.</li>
-    </ul>
+    <h1 class="text-center bowling-header-text">Bowling Angular Application</h1>
   </div>
 </div>
 
 
 <div class="container">
-    
+    <!-- The Modal -->
+    <div class="modal overlay" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <!--<h4 class="modal-title">{{ title }}</h4>-->
+                    <h4 class="modal-title">Bowled!!</h4>
+                    <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <!--<div class="modal-body">
+                    {{ content }}
+                </div>-->
+                <div class="modal-body">
+                    Oops :( something went wrong. Please start the game.
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click) = "hide()">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <div class="row">
       <div class="col-md-12">
         <bowling-scorecard></bowling-scorecard> <!-- SCORE CARD-->
@@ -19,44 +42,45 @@
     </div>
 
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 border-right">
         <bowling-player></bowling-player>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4 border-right">
         <bowling-game></bowling-game>
       </div>
 
-      <div class="col-md-3">
+      <div class="col-md-4">
        <bowling-roll [knocked]="knocked"></bowling-roll>
       </div>
 
     </div>
-    
+    <div class="card-footer">
     <div class="row">
       <div class="col-md-3">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Player Name" aria-label="..." [disabled]="currentGame.isStarted" [(ngModel)]="newPlayer">
+          <input type="text" maxlength="12" class="form-control" placeholder="Player Name" [disabled]="currentGame.isStarted" [(ngModel)]="newPlayer">
           <div class="input-group-btn">
-            <button type="button" class="btn btn-primary" [disabled]="currentGame.isStarted" (click)="joinGame()">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Join
+            <button type="button" class="btn btn-primary" [disabled]="currentGame.isStarted || newPlayer === ''" (click)="joinGame()">
+               Join<fa-icon [icon]="faUserPlus" class="ml-2"></fa-icon>
             </button>
           </div>
         </div>
       </div>
       <div class="col-md-3">
-        <button class="btn btn-block btn-primary" [disabled]="currentGame.isStarted" (click)="startGame()">
-          <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start Game
+        <button class="btn w-75 btn-primary ml-5" [disabled]="currentGame.isStarted || disableStartGameButton" (click)="startGame()">
+           Start Game <fa-icon [icon]="faPlayCircle" class="ml-2"></fa-icon>
         </button>
       </div>
       <div class="col-md-3">
-        <button class="btn btn-block btn-secondary" [disabled]="!currentGame.isStarted" (click)="finishGame()">
-          <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Finish Game
+        <button class="btn w-75 btn-secondary ml-5" [disabled]="!currentGame.isStarted" (click)="finishGame()">
+          Finish Game <fa-icon [icon]="faStopCircle" class="ml-2"></fa-icon>
         </button>
       </div>
       <div class="col-md-3">
-        <button class="btn btn-block btn-success" [disabled]="!currentGame.isStarted || currentGame.isFinished" (click)="throwBall()">
-          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Throw a Ball
+        <button class="btn w-75 btn-primary ml-5" [disabled]="!currentGame.isStarted || currentGame.isFinished" (click)="throwBall()">
+           Throw a Ball <fa-icon [icon]="faSync" class="ml-2"></fa-icon>
         </button>
       </div>
+    </div>
     </div>
   </div> <!-- /container -->
