@@ -1,12 +1,14 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BowlingRollService } from '../bowling-roll/bowling-roll.service';
-
 
 @Injectable({
   providedIn: 'root'
 })
+/*
+* name: BowlingFrameService
+* description: A service which add the roll in the frame.
+*/
 export class BowlingFrameService {
-  //static instance: BowlingFrameService;
   _position: number;
   _sum: number = 0;
   _bonus: number = 0;
@@ -21,7 +23,6 @@ export class BowlingFrameService {
          const roll = new BowlingRollService(this, i, null);
          this._rolls.push(roll);
      }
-    //BowlingFrameService.instance = this;
  }
 
  get position(): number {
@@ -89,9 +90,11 @@ export class BowlingFrameService {
  set score(value: number) {
    this._score = value;
  }
-
+/*
+* name: play
+* description: To check and provide the value based on roll position, strike and last frame.
+*/
  play(knocked): void  {
-   console.log("Start Frame Play");
    const pinCount = 10;
 
    const roll = this.currentRoll;
@@ -113,19 +116,20 @@ export class BowlingFrameService {
 
    // Last frame
    if (this.isLast && roll.position === 2) {
-    
-     if (sum % 10 !== 0) {
+       if (sum % 10 !== 0 && sum < 10) {
        this.finish();
      }
    }
    // Strike
-  
-    if (isStrike  && roll.position == 1) {
+   if (!this.isLast && isStrike  && roll.position === 1) {
      this.finish();
    }
 
  }
-
+/*
+* name: finish
+* description: To finish the turn and reset the roll value if null.
+*/
  finish(): void {
    for (const roll of this._rolls) {
      if (roll.value == null) {

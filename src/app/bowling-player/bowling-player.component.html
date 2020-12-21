@@ -1,5 +1,5 @@
 <!-- The Modal -->
-<div class="modal overlay" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+<div class="modal overlay" id="myModal" *ngIf="showModal">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -10,7 +10,7 @@
       </div>
       <!-- Modal body -->
       <div class="modal-body">
-        Oops :( something went wrong. Please start the game.
+         {{ content }}
       </div>
 
       <!-- Modal footer -->

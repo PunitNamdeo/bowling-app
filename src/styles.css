@@ -23,8 +23,8 @@
 }
 
 .bowling-player {
-    line-height: 2.4rem;
     color: #343a40;
+    vertical-align: middle !important;
 }
 
 .text-color {

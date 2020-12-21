@@ -40,14 +40,10 @@
       <th *ngFor="let roll of player.rolls" class="font-weight-light">{{ roll | rollScore}}</th>
       <th rowspan="2" class="pt-4 bowling-player"> {{ player.score }}</th>
     </tr>
-
-
-
     <tr class="table-success">
       <ng-template ngFor let-frame [ngForOf]="player.frames">
        <th [attr.colspan]="frame.rolls.length" >{{frame.score}}</th>
      </ng-template>
-
     </tr>
   </tbody>
 </table>

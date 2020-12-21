@@ -4,6 +4,10 @@ import { BowlingFrameService } from '../bowling-frame/bowling-frame.service';
 @Injectable({
   providedIn: 'root'
 })
+/*
+ * name: BowlingPlayerService
+ * description: A service provide the frame based on the players.
+ */
 export class BowlingPlayerService {
   _position: number;
   _name: string;
@@ -68,12 +72,19 @@ export class BowlingPlayerService {
   set score(value: number) {
     this._score = value;
   }
-
+/*
+ * name: play
+ * description: To play the game in current frame with knocked value
+ */
   play(knocked): void {
     this.currentFrame.play(knocked);
     this.calc();
   }
 
+/*
+ * name: calc
+ * description: To calculate the score based on frame
+ */
   calc(): void {
     let sum = 0;
     const frames = this._frames;
